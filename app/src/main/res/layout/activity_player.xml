@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.talkcharge.hlsvideoview.PlayerActivity.CLickAction" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:onClick="@{click.onMainClick}"
+        tools:context=".PlayerActivity">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exoplayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            app:show_buffering="when_playing"
+            app:use_controller="false" />
+
+        <LinearLayout
+            android:id="@+id/controller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backward"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:onClick="@{click.onBackward}"
+                android:src="@mipmap/backward" />
+
+            <ImageView
+                android:id="@+id/play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:onClick="@{click.onPlayPause}"
+                android:src="@drawable/pause" />
+
+            <ImageView
+                android:id="@+id/forward"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:onClick="@{click.onForward}"
+                android:src="@mipmap/forward" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/seekLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@color/white" />
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/max"
+                android:layout_toEndOf="@id/min"
+                android:background="@android:color/transparent"
+                android:progressTint="@color/red"
+                android:thumbTint="@color/red" />
+
+            <TextView
+                android:id="@+id/max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="00:00"
+                android:textColor="@color/white" />
+
+            <Spinner
+                android:id="@+id/resolution_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/seekbar"
+                android:background="@color/white" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
